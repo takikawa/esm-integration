@@ -18,7 +18,7 @@ jobs:
         uses: ocaml/setup-ocaml@v2
         with:
           ocaml-compiler: 4.12.x
-      - run: opam install ocamlbuild
+      - run: opam install ocamlbuild && eval $(opam env)
       - run: cd interpreter && make all
 
   build-spec:
@@ -35,7 +35,7 @@ jobs:
       - uses: ammaraskar/sphinx-action@0.4
         with:
           docs-folder: "document/core"
-          pre-build-command: "apt-get update -y && apt-get install -y python-six"
+          pre-build-command: "apt-get update -y && apt-get install -y python-six python3-six"
           build-command: "make all"
 
       - name: Publish HTML to GitHub Pages
