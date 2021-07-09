@@ -26,13 +26,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: pip install bikeshed && bikeshed update
-      - run: bikeshed spec document/js-api/index.bs document/js-api/index.html
+      - name: Build JS API
+        uses: netwerk-digitaal-erfgoed/bikeshed-action@v1
+        with:
+          source: "document/js-api/index.bs"
+          destination: "document/js-api/index.html"
 
       - uses: ammaraskar/sphinx-action@0.4
         with:
           docs-folder: "document/core"
-          pre-build-command: "pip install six && apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
+          pre-build-command: "pip install bikeshed && bikeshed update && pip install six && apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
           build-command: "make all"
 
       - name: Publish HTML to GitHub Pages
