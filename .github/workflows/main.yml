@@ -26,11 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build JS API
-        uses: netwerk-digitaal-erfgoed/bikeshed-action@v1
-        with:
-          source: "document/js-api/index.bs"
-          destination: "document/js-api/index.html"
+      - run: pip install bikeshed && bikeshed update
+      - run: bikeshed spec document/js-api/index.bs document/js-api/index.html
 
       - uses: ammaraskar/sphinx-action@0.4
         with:
