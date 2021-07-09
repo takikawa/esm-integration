@@ -18,8 +18,8 @@ jobs:
         uses: ocaml/setup-ocaml@v2
         with:
           ocaml-compiler: 4.12.x
-      - run: opam install ocamlbuild && eval $(opam env)
-      - run: cd interpreter && make all
+      - run: opam install ocamlbuild
+      - run: cd interpreter && opam exec make all
 
   build-spec:
     runs-on: ubuntu-latest
