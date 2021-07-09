@@ -1,36 +1,41 @@
-# Build and deploy spec documents
-
 name: CI
 
-# Controls when the workflow will run
 on:
   push:
     branches: [ master ]
   pull_request:
+    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  ref-interpreter:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Setup OCaml
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: 4.12.x
+      - run: make all
+
+  build-spec:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
 
-      # Build JS API document
       - name: Build JS API
         uses: netwerk-digitaal-erfgoed/bikeshed-action@v1
         with:
           source: "document/js-api/index.bs"
           destination: "document/js-api/index.html"
 
-      # Publish to gh-pages
+      - uses: ammaraskar/sphinx-action@v4
+        with:
+          docs-folder: "document/core"
+          build-command: "make all"
+
       - name: Publish HTML to GitHub Pages
         if: success() && github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
