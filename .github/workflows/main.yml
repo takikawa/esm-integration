@@ -35,7 +35,7 @@ jobs:
       - uses: ammaraskar/sphinx-action@0.4
         with:
           docs-folder: "document/core"
-          pre-build-command: "pip install bikeshed && bikeshed update && pip install six && apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
+          pre-build-command: "pip install bikeshed && bikeshed update && pip install six && npm install --global yarn && apt-key apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
           build-command: "make all"
 
       - name: Publish HTML to GitHub Pages
