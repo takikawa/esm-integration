@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Build JS API
         uses: netwerk-digitaal-erfgoed/bikeshed-action@v1
