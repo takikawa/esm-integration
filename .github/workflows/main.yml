@@ -32,11 +32,11 @@ jobs:
           source: "document/js-api/index.bs"
           destination: "document/js-api/index.html"
 
-      - uses: ammaraskar/sphinx-action@0.4
-        with:
-          docs-folder: "document/core"
-          pre-build-command: "pip install bikeshed && bikeshed update && pip install six && npm install --global yarn && apt-key apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
-          build-command: "make all"
+      - run: pip install bikeshed && bikeshed update
+      - run: pip install six
+      - run: apt-key apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+      - run: pip install sphinx
+      - run: cd document/core && make all
 
       - name: Publish HTML to GitHub Pages
         if: success() && github.ref == 'refs/heads/master'
