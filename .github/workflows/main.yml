@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: "recursive"
 
       - name: Build JS API
         uses: netwerk-digitaal-erfgoed/bikeshed-action@v1
