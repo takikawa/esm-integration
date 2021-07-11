@@ -70,7 +70,7 @@ jobs:
     needs: [build-core-spec, build-js-api-spec, build-web-api-spec]
     steps:
       - uses: actions/checkout@v2
-      - run: cp index.html _output/index.html
+      - run: cp document/index.html _output/index.html
       - uses: actions/download-artifact@v2
         with:
           name: js-api-rendered
