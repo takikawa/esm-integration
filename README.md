@@ -1,4 +1,4 @@
-![Build Status](https://github.com/takikawa/esm-integration/actions/workflows/main.yaml/badge.svg)
+![Build Status](https://github.com/takikawa/esm-integration/actions/workflows/main.yml/badge.svg)
 
 # ES Module Integration Proposal for WebAssembly
 
