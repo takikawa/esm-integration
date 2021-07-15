@@ -18,7 +18,7 @@ jobs:
         uses: ocaml/setup-ocaml@v2
         with:
           ocaml-compiler: 4.12.x
-      - run: opam install ocamlbuild
+      - run: opam install --yes ocamlbuild.0.14.0
       - run: cd interpreter && opam exec make all
       
   build-js-api-spec:
@@ -58,7 +58,7 @@ jobs:
       - run: pip install bikeshed && bikeshed update
       - run: pip install six
       - run: sudo apt-get update -y && sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
-      - run: pip install sphinx
+      - run: pip install sphinx==3.5.2
       - run: cd document/core && make all
       - uses: actions/upload-artifact@v2
         with:
