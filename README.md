@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/WebAssembly/spec.svg?branch=master)](https://travis-ci.org/WebAssembly/spec)
+![Build Status](https://github.com/takikawa/esm-integration/actions/workflows/main.yaml/badge.svg)
 
 # ES Module Integration Proposal for WebAssembly
 
