@@ -25,7 +25,6 @@ Prepare For TR: true
     "publisher": "W3C WebAssembly Community Group",
     "status": "Draft"
   }
-}
 </pre>
 
 <pre class="anchors">
